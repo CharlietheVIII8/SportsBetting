@@ -74,6 +74,9 @@ WSGI_APPLICATION = 'SportsBetting.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
