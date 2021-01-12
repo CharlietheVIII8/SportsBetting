@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'SportsBetting',
         'USER': 'postgres',
         'PASSWORD': '1228gizmo',
-        'HOST': 'localhost',
+        'HOST': 'sportsbetting.cgcvzavpthrj.us-east-2.rds.amazonaws.com',
         'PORT': '5432'
     }
 }
