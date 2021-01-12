@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'untitled2.urls'
+ROOT_URLCONF = 'SportsBetting.urls'
 
 TEMPLATES = [
     {
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'SportsBetting.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'SportsBetting',
+        'USER': 'postgres',
+        'PASSWORD': '1228gizmo',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
