@@ -19,3 +19,6 @@ class Team(models.Model):
     home_losses = models.IntegerField()
     away_wins = models.IntegerField()
     away_losses = models.IntegerField()
+
+    def __str__(self):
+        return self.name
