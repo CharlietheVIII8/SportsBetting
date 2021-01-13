@@ -10,7 +10,7 @@ class Team(models.Model):
     games_played = models.IntegerField()
     wins = models.IntegerField()
     losses = models.IntegerField()
-    win_percentage = models.FloatField()
+    win_percentage = models.FloatField(null=True)
     rating = models.FloatField()
     strength_of_schedule = models.FloatField()
     conference_wins = models.IntegerField()
