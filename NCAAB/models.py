@@ -5,7 +5,7 @@ from django.db import models
 
 class Team(models.Model):
     conference = models.CharField(max_length=256)
-    abbreviation = models.CharField(max_length=10)
+    abbreviation = models.CharField(max_length=256)
     name = models.CharField(max_length=256, primary_key=True)
     games_played = models.IntegerField()
     wins = models.IntegerField()

@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from sportsipy.ncaab.teams import Teams
 from ...models import Team
 
+
 class Command(BaseCommand):
     help = 'Get teams'
 
@@ -15,7 +16,7 @@ class Command(BaseCommand):
                               wins=team.wins,
                               losses=team.losses,
                               win_percentage=team.win_percentage,
-                              rating=team.,
+                              rating=team.simple_rating_system,
                               strength_of_schedule=team.strength_of_schedule,
                               conference_wins=team.conference_wins,
                               conference_losses=team.conference_losses,
