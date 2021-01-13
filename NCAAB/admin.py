@@ -6,4 +6,4 @@ from .models import Team
 
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("id", "abbreviation", "name", "conference")
