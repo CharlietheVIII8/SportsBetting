@@ -11,17 +11,5 @@ class Command(BaseCommand):
         for team in teams:
             model_team = Team(conference=team.conference,
                               abbreviation=team.abbreviation,
-                              name=team.abbreviation,
-                              games_played=team.games_played,
-                              wins=team.wins,
-                              losses=team.losses,
-                              win_percentage=team.win_percentage,
-                              rating=team.simple_rating_system,
-                              strength_of_schedule=team.strength_of_schedule,
-                              conference_wins=team.conference_wins,
-                              conference_losses=team.conference_losses,
-                              home_losses=team.home_losses,
-                              home_wins=team.home_wins,
-                              away_losses=team.away_losses,
-                              away_wins=team.away_wins)
+                              name=team.name,)
             model_team.save()
