@@ -9,8 +9,9 @@ class Command(BaseCommand):
     help = 'Get boxscores'
 
     def handle(self, *args, **options):
-        boxscores = Boxscores(date=datetime.now() - timedelta(days=20*365), end_date=datetime.now())
+        boxscores = Boxscores(date=datetime.now() - timedelta(days=2), end_date=datetime.now())
         for date, data in boxscores.games.items():
+            print(date)
             for game in data:
                 print(game)
                 boxscore = Boxscore(game['boxscore'])
@@ -21,13 +22,14 @@ class Command(BaseCommand):
                 del game_dict['date']
                 date = datetime.strptime(boxscore.date, '%B %d, %Y')
                 game, created = GameBoxscore.objects.update_or_create(date=date,
-                                                                      winner=Team.objects.get(name=boxscore.winning_name),
-                                                                      loser=Team.objects.get(name=boxscore.losing_name),
+                                                                      winner=Team.objects.get(
+                                                                          abbreviation=boxscore.winning_abbr),
+                                                                      loser=Team.objects.get(
+                                                                          abbreviation=boxscore.losing_abbr),
                                                                       defaults=game_dict)
                 home_team = boxscore.home_players
                 away_team = boxscore.away_players
                 for player in home_team + away_team:
                     player_dict = player.dataframe.to_dict('records')[0]
                     player_dict['game'] = game
-                    print(player)
                     PlayerBoxscore.objects.update_or_create(player=player.name, date=date, defaults=player_dict)

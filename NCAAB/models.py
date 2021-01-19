@@ -173,7 +173,7 @@ class GameBoxscore(models.Model):
     home_two_point_field_goals = models.IntegerField(null=True)
     home_win_percentage = models.FloatField(null=True)
     home_wins = models.IntegerField(null=True)
-    location = models.CharField(max_length=255, default=None)
+    location = models.CharField(max_length=255, default=None, null=True)
     losing_abbr = models.CharField(max_length=255, default=None)
     loser = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='boxscore_loser', default=None)
     pace = models.FloatField(null=True)
