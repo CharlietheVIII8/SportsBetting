@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, PlayerBoxscore, GameBoxscore
+from .models import Team, PlayerBoxscore, GameBoxscore, Tweet, TwitterAccount
 
 
 # Register your models here.
@@ -20,3 +20,15 @@ class PlayerBoxscoreAdmin(admin.ModelAdmin):
 class GameBoxscoreAdmin(admin.ModelAdmin):
     list_display = ("winner", "loser", "date")
     search_fields = ("winner", "loser", "date")
+
+
+@admin.register(Tweet)
+class TweetAdmin(admin.ModelAdmin):
+    list_display = ("account",)
+    search_fields = ("account",)
+
+
+@admin.register(TwitterAccount)
+class TwitterAccountAdmin(admin.ModelAdmin):
+    list_display = ("name", "handle")
+    search_fields = ("name", "handle")
