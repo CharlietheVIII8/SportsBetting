@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
 from SportsBetting.settings import TWITTER_ACCESS_TOKEN, TWITTER_API_KEY, TWITTER_API_SECRET_KEY, TWITTER_TOKEN_SECRET
 from ...models import TwitterAccount, Tweet
-from datetime import datetime
+from datetime import datetime, timedelta
 import tweepy as tw
 
 
@@ -20,7 +20,7 @@ class Command(BaseCommand):
                                        tweet_mode='extended')
             for tweet in tweets:
                 tweet_dict = tweet.__dict__['_json']
-                date = datetime.strptime(tweet_dict['created_at'], '%a %b %d %H:%M:%S %z %Y')
+                date = datetime.strptime(tweet_dict['created_at'], '%a %b %d %H:%M:%S %z %Y') - timedelta(hours=5)
                 Tweet.objects.update_or_create(id=str(tweet_dict['id']), account=account, defaults={'created_at': date,
                                                                                                     'full_text':
                                                                                                         tweet_dict[

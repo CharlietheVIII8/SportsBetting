@@ -25,7 +25,7 @@ class GameBoxscoreAdmin(admin.ModelAdmin):
 @admin.register(Tweet)
 class TweetAdmin(admin.ModelAdmin):
     list_display = ("account", "created_at", "full_text")
-    search_fields = ("account", "created_at")
+    search_fields = ("account", "full_text")
 
 
 @admin.register(TwitterAccount)
