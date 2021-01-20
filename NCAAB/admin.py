@@ -12,7 +12,7 @@ class TeamAdmin(admin.ModelAdmin):
 
 @admin.register(PlayerBoxscore)
 class PlayerBoxscoreAdmin(admin.ModelAdmin):
-    list_display = ("player",)
+    list_display = ("player", "date")
     search_fields = ("player",)
 
 
