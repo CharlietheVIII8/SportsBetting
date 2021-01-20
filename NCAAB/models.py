@@ -227,9 +227,21 @@ class PlayerBoxscore(models.Model):
 
 
 class TwitterAccount(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    handle = models.CharField(max_length=255)
+    handle = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Tweet(models.Model):
     account = models.ForeignKey(TwitterAccount, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(null=True)
+    id = models.CharField(max_length=255, primary_key=True)
+    full_text = models.CharField(max_length=1000, null=True)
+    in_reply_to_status_id = models.CharField(max_length=255, null=True)
+    in_reply_to_user_id = models.CharField(max_length=255, null=True)
+    in_reply_to_screen_name = models.CharField(max_length=255, null=True)
+    retweet_count = models.IntegerField(null=True)
+    favorite_count = models.IntegerField(null=True)
