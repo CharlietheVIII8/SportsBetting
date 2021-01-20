@@ -224,3 +224,12 @@ class PlayerBoxscore(models.Model):
     two_point_percentage = models.FloatField(null=True)
     two_pointers = models.IntegerField()
     usage_percentage = models.FloatField(null=True)
+
+
+class TwitterAccount(models.Model):
+    name = models.CharField(max_length=255)
+    handle = models.CharField(max_length=255)
+
+
+class Tweet(models.Model):
+    account = models.ForeignKey(TwitterAccount, on_delete=models.CASCADE)

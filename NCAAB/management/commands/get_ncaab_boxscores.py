@@ -9,14 +9,17 @@ class Command(BaseCommand):
     help = 'Get boxscores'
 
     def handle(self, *args, **options):
-        for i in range(20*365):
+        for i in range(388, 20 * 365):
             print('Getting Boxscores')
             boxscores = Boxscores(date=datetime.now() - timedelta(days=i))
             for date, data in boxscores.games.items():
                 print(date)
                 for game in data:
                     print('Getting Boxscore for {}'.format(game['boxscore']))
-                    boxscore = Boxscore(game['boxscore'])
+                    try:
+                        boxscore = Boxscore(game['boxscore'])
+                    except IndexError:
+                        continue
                     try:
                         print('Getting Game Dict')
                         game_dict = boxscore.dataframe.to_dict('records')[0]
@@ -30,9 +33,11 @@ class Command(BaseCommand):
                     try:
                         print('Creating GameBoxscore Object')
                         game, created = GameBoxscore.objects.update_or_create(date=date,
-                                                                          winner=Team.objects.get(abbreviation=boxscore.winning_abbr),
-                                                                          loser=Team.objects.get(abbreviation=boxscore.losing_abbr),
-                                                                          defaults=game_dict)
+                                                                              winner=Team.objects.get(
+                                                                                  abbreviation=boxscore.winning_abbr),
+                                                                              loser=Team.objects.get(
+                                                                                  abbreviation=boxscore.losing_abbr),
+                                                                              defaults=game_dict)
                     except Team.DoesNotExist:
                         continue
                     home_team = boxscore.home_players
